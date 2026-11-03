@@ -27,31 +27,31 @@ aws dynamodb create-table `
   aws dynamodb describe-table --table-name $tabla --endpoint-url $ENDPOINT
 
   # 3. Insertar Items
-aws dynamodb put-item --table-name tabla-polizas `
+aws dynamodb put-item --table-name $tabla `
   --item "numeroPoliza={S=POL-001},version={N=1},cliente={S='Juan Pérez'},estado={S=ACTIVA},prima={N=250.50}" `
   --endpoint-url $ENDPOINT `
   --region $region
 
-  aws dynamodb put-item --table-name tabla-polizas `
+  aws dynamodb put-item --table-name $tabla `
   --item "numeroPoliza={S=POL-001},version={N=2},cliente={S='Juan Pérez'},estado={S=BAJA},prima={N=280.00}" `
   --endpoint-url $ENDPOINT `
   --region $region
 
   # Leer
-  aws dynamodb get-item --table-name tabla-polizas `
+  aws dynamodb get-item --table-name $tabla `
   --key "numeroPoliza={S=POL-001},version={N=1}" `
   --endpoint-url $ENDPOINT `
   --region $region
 
   # Query
-  aws dynamodb query --table-name tabla-polizas `
+  aws dynamodb query --table-name $tabla `
   --key-condition-expression "numeroPoliza = :p" `
   --expression-attribute-values ":p={S=POL-001}" `
   --endpoint-url $ENDPOINT `
   --region $region
 
   # Update
-  aws dynamodb update-item --table-name tabla-polizas `
+  aws dynamodb update-item --table-name $tabla `
   --key "numeroPoliza={S=POL-001},version={N=1}" `
   --update-expression "SET estado = :e" `
   --expression-attribute-values ":e={S=CANCELADA}" `
