@@ -1,5 +1,5 @@
 # Ajusta el endpoint 
-$endpoint = "http://localhost:4566"
+$ENDPOINT = "http://localhost:4566"
 $region   = "us-east-1"
 $tabla = "tabla-polizas"
 
@@ -61,7 +61,7 @@ aws dynamodb put-item --table-name $tabla `
 
 <#
   # Limpieza Tabla
-  aws dynamodb delete-table --table-name $TABLA --endpoint-url $ENDPOINT   --region $region | Out-Null
+  aws dynamodb delete-table --table-name $tabla --endpoint-url $ENDPOINT   --region $region | Out-Null
   Write-Host "Tabla eliminada."
 
   #>
